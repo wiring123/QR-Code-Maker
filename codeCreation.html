@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Include Bootstrap for styling -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+
+    <style>
+      .qr-code {
+        max-width: 300px;
+        margin: 40px;
+      }
+      button {
+        background-color: rgb(0, 119, 255);
+        color: white;
+      }
+    </style>
+
+    <title>QR Code Generator</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="text-center">
+        <!-- Get a Placeholder image initially, 
+	this will change according to the 
+	data entered later -->
+        <img
+          src="https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0"
+          class="qr-code img-thumbnail img-responsive"
+        />
+      </div>
+
+      <div class="form-horizontal">
+        <div class="form-group">
+         <h3>
+            URL:
+         </h3>
+          <div class="col-sm-20">
+            <!-- Input box to enter the 
+			required data -->
+            <input
+              type="text"
+              placeholder="Enter your URL here!"
+              size="30"
+              maxlength="500"
+              class="form-control"
+              id="content"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-100 col-sm-100">
+            <!-- Button to generate QR Code for 
+		the entered data -->
+            <button type="button" id="generate">
+             Construct QR code
+            </button>
+
+          
+         
+            
+           
+              
+            
+          
+            
+          
+        </div>
+      </div>
+    </div>
+  </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <a href="/index2.html">Clear</a>
+    <br>
+    <br>
+
+    <script>
+      // Function to HTML encode the text
+      // This creates a new hidden element,
+     
+      // inserts the given text into it
+      // and outputs it out as HTML
+      function htmlEncode(value) {
+        return $("<div/>").text(value).html();
+      }
+
+      $(function () {
+        
+    
+        $("#generate").click(function () {
+        
+          alert("Code Generated Succesfully! Right click QR code and save/copy image.")
+          let finalURL =
+            "https://chart.googleapis.com/chart?cht=qr&chl=" +
+            htmlEncode($("#content").val()) +
+            "&chs=160x160&chld=L|0";
+
+          $(".qr-code").attr("src", finalURL);
+        });
+      });
+    </script>
+
+    <a href="https://mail.google.com/">Share Your New Code</a>
+  </body>
+</html>
